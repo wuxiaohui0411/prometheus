@@ -1,0 +1,20 @@
+- targets: [http://10.32.134.81/iPortal/CheckStatus.aspx]
+  labels:
+    Hostname: 'AP-BPMV8-180'
+    ApplicationOwner: '张莉'
+    ApplicationName: 'BPM'
+- targets: [http://10.32.134.85/iPortal/CheckStatus.aspx]
+  labels:
+    Hostname: 'AP-BPMV8-184'
+    ApplicationOwner: '张莉'
+    ApplicationName: 'BPM'
+- targets: [http://10.32.134.82/iPortal/CheckStatus.aspx]
+  labels:
+    Hostname: 'AP-BPMV8-181'
+    ApplicationOwner: '张莉'
+    ApplicationName: 'BPM'
+- targets: [http://10.32.134.86/iPortal/CheckStatus.aspx]
+  labels:
+    Hostname: 'AP-BPMV8-185'
+    ApplicationOwner: '张莉'
+    ApplicationName: 'BPM'

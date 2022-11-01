@@ -1,0 +1,1865 @@
+###############################################
+######     Prometheus监控节点按应用分类     ######
+######     节点需添加以下标签项(labels)     ######
+######     ApplicationName: 'OMS'          ######
+######     ApplicationRole: 'Middleware'   ######
+######     Environment: 'prod-rk'          ######
+######     Hostname: 'chqoms01ap'          ######
+######     ApplicationOwner: '申国磊'      ######
+###############################################
+
+
+###############################################
+######         OMS 应用生产服务器         #######
+###############################################
+- targets: ['10.32.132.11:9100']
+  labels:
+    ApplicationName: 'OMS'
+    ApplicationRole: 'Middleware'
+    Environment: 'prod-rk'
+    Hostname: 'chqoms01ap'
+    ApplicationOwner: '申国磊'
+
+- targets: ['10.32.132.12:9100']
+  labels:
+    ApplicationName: 'OMS'
+    ApplicationRole: 'Middleware'
+    Environment: 'prod-rk'
+    Hostname: 'chqoms02ap'
+    ApplicationOwner: '申国磊'
+
+- targets: ['10.32.133.11:9100']
+  labels:
+    ApplicationName: 'OMS'
+    ApplicationRole: 'Middleware'
+    Environment: 'prod-rk'
+    Hostname: 'chqoms03ap'
+    ApplicationOwner: '申国磊'
+
+- targets: ['10.32.132.13:9100']
+  labels:
+    ApplicationName: 'OMS'
+    ApplicationRole: 'Middleware'
+    Environment: 'prod-rk'
+    Hostname: 'chqoms04ap'
+    ApplicationOwner: '申国磊'
+
+###############################################
+######         OMS 应用开发服务器         #######
+###############################################
+- targets: ['10.32.196.11:9100']
+  labels:
+    ApplicationName: 'OMS'
+    ApplicationRole: 'Middleware'
+    Environment: 'nonprod-rk'
+    Hostname: 'chqoms01ad'
+    ApplicationOwner: '申国磊'
+
+###############################################
+######         OMS 应用测试服务器          #######
+###############################################
+- targets: ['10.32.196.111:9100']
+  labels:
+    ApplicationName: 'OMS'
+    ApplicationRole: 'Middleware'
+    Environment: 'nonprod-rk'
+    Hostname: 'chqoms01at'
+    ApplicationOwner: '申国磊'
+
+
+
+
+
+###############################################
+######         ECC 数据库生产服务器          #######
+###############################################
+- targets: ['10.32.136.11:9100']
+  labels:
+    ApplicationName: 'SAP-ECC'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqecc01dp'
+    ApplicationOwner: 'basis'
+
+- targets: ['10.32.137.11:9100']
+  labels:
+    ApplicationName: 'SAP-ECC'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqecc11dp'
+    ApplicationOwner: 'basis'
+
+###############################################
+######         ECC 应用测试服务器          #######
+###############################################
+- targets: ['10.32.194.111:9100']
+  labels:
+    ApplicationName: 'SAP-ECC'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqecc01at'
+    ApplicationOwner: 'basis'
+
+###############################################
+######         ECC 数据库开发服务器          #######
+###############################################
+- targets: ['10.32.200.11:9100']
+  labels:
+    ApplicationName: 'SAP-ECC'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqecc01dd'
+    ApplicationOwner: 'basis'
+
+###############################################
+######         ECC 数据库测试服务器          #######
+###############################################
+- targets: ['10.32.200.12:9100']
+  labels:
+    ApplicationName: 'SAP-ECC'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqecc01dt'
+    ApplicationOwner: 'basis'
+
+###############################################
+######         ECC 应用生产服务器          #######
+###############################################
+- targets: ['10.32.130.11:9100']
+  labels:
+    ApplicationName: 'SAP-ECC'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqecc01sp'
+    ApplicationOwner: 'basis'
+
+- targets: ['10.32.131.11:9100']
+  labels:
+    ApplicationName: 'SAP-ECC'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqecc02sp'
+    ApplicationOwner: 'basis'
+
+- targets: ['10.32.130.12:9100']
+  labels:
+    ApplicationName: 'SAP-ECC'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqecc01ap'
+    ApplicationOwner: 'basis'
+
+- targets: ['10.32.130.13:9100']
+  labels:
+    ApplicationName: 'SAP-ECC'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqecc02ap'
+    ApplicationOwner: 'basis'
+
+- targets: ['10.32.130.14:9100']
+  labels:
+    ApplicationName: 'SAP-ECC'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqecc03ap'
+    ApplicationOwner: 'basis'
+
+- targets: ['10.32.130.15:9100']
+  labels:
+    ApplicationName: 'SAP-ECC'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqecc04ap'
+    ApplicationOwner: 'basis'
+
+- targets: ['10.32.130.16:9100']
+  labels:
+    ApplicationName: 'SAP-ECC'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqecc05ap'
+    ApplicationOwner: 'basis'
+
+- targets: ['10.32.130.17:9100']
+  labels:
+    ApplicationName: 'SAP-ECC'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqecc06ap'
+    ApplicationOwner: 'basis'
+
+- targets: ['10.32.130.18:9100']
+  labels:
+    ApplicationName: 'SAP-ECC'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqecc07ap'
+    ApplicationOwner: 'basis'
+
+- targets: ['10.32.130.19:9100']
+  labels:
+    ApplicationName: 'SAP-ECC'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqecc08ap'
+    ApplicationOwner: 'basis'
+
+- targets: ['10.32.130.20:9100']
+  labels:
+    ApplicationName: 'SAP-ECC'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqecc09ap'
+    ApplicationOwner: 'basis'
+
+- targets: ['10.32.130.21:9100']
+  labels:
+    ApplicationName: 'SAP-ECC'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqecc10ap'
+    ApplicationOwner: 'basis'
+
+- targets: ['10.32.130.22:9100']
+  labels:
+    ApplicationName: 'SAP-ECC'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqecc11ap'
+    ApplicationOwner: 'basis'
+
+###############################################
+######        ECC  应用开发服务器          #######
+###############################################
+- targets: ['10.32.194.11:9100']
+  labels:
+    ApplicationName: 'SAP-ECC'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqecc01ad'
+    ApplicationOwner: 'basis'
+
+
+
+
+
+###############################################
+######         BW 数据库生产服务器          #######
+###############################################
+- targets: ['10.32.136.30:9100']
+  labels:
+    ApplicationName: 'SAP-BW'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqbw03dp'
+    ApplicationOwner: '孙立芳'
+
+- targets: ['10.32.136.34:9100']
+  labels:
+    ApplicationName: 'SAP-BW'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqbw04dp'
+    ApplicationOwner: "孙立芳"
+
+- targets: ['10.32.136.31:9100']
+  labels:
+    ApplicationName: 'SAP-BW'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqbw01dp'
+    ApplicationOwner: 'basis'
+
+- targets: ['10.32.136.32:9100']
+  labels:
+    ApplicationName: 'SAP-BW'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqbw02dp'
+    ApplicationOwner: 'basis'
+
+###############################################
+######         BW 应用生产服务器          #######
+###############################################
+- targets: ['10.32.130.56:9100']
+  labels:
+    ApplicationName: 'SAP-BW'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqbw01ap'
+    ApplicationOwner: '孙立芳'
+
+- targets: ['10.32.130.57:9100']
+  labels:
+    ApplicationName: 'SAP-BW'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqbw02ap'
+    ApplicationOwner: '孙立芳'
+
+###############################################
+######        BW  应用开发服务器          #######
+###############################################
+- targets: ['10.32.194.31:9100']
+  labels:
+    ApplicationName: 'SAP-BW'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqbw01ad'
+    ApplicationOwner: 'basis'
+
+###############################################
+######        BW  应用测试服务器          #######
+###############################################
+- targets: ['10.32.194.131:9100']
+  labels:
+    ApplicationName: 'SAP-BW'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqbw01at'
+    ApplicationOwner: 'basis'
+
+###############################################
+######        BW  数据库开发服务器          #######
+###############################################
+- targets: ['10.32.200.16:9100']
+  labels:
+    ApplicationName: 'SAP-BW'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqbw01dd'
+    ApplicationOwner: 'basis'
+
+
+
+
+
+###############################################
+######         TMS 数据库生产服务器          #######
+###############################################
+- targets: ['10.32.136.16:9100']
+  labels:
+    ApplicationName: 'SAP-TMS'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqtms01dp'
+    ApplicationOwner: '刘飞'
+
+- targets: ['10.32.137.16:9100']
+  labels:
+    ApplicationName: 'SAP-TMS'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqtms11dp'
+    ApplicationOwner: 'basis'
+
+###############################################
+######         TMS 数据库开发服务器          #######
+###############################################
+- targets: ['10.32.200.13:9100']
+  labels:
+    ApplicationName: 'SAP-TMS'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqtms01dd_20220221'
+    ApplicationOwner: '刘飞'
+
+###############################################
+######         TMS 数据库测试服务器          #######
+###############################################
+- targets: ['10.32.200.14:9100']
+  labels:
+    ApplicationName: 'SAP-TMS'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqtms01dt'
+    ApplicationOwner: '刘飞'
+
+###############################################
+######         TMS 应用生产服务器          #######
+###############################################
+- targets: ['10.32.130.31:9100']
+  labels:
+    ApplicationName: 'SAP-TMS'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqtms01sp'
+    ApplicationOwner: '刘飞'
+
+- targets: ['10.32.131.31:9100']
+  labels:
+    ApplicationName: 'SAP-TMS'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqtms02sp'
+    ApplicationOwner: '刘飞'
+
+- targets: ['10.32.130.32:9100']
+  labels:
+    ApplicationName: 'SAP-TMS'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqtms01ap'
+    ApplicationOwner: '刘飞'
+
+- targets: ['10.32.130.33:9100']
+  labels:
+    ApplicationName: 'SAP-TMS'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqtms02ap'
+    ApplicationOwner: '刘飞'
+
+- targets: ['10.32.130.98:9100']
+  labels:
+    ApplicationName: 'SAP-TMS'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqads01ap'
+    ApplicationOwner: '孙立芳'
+
+###############################################
+######         TMS 应用测试服务器          #######
+###############################################
+- targets: ['10.32.194.116:9100']
+  labels:
+    ApplicationName: 'SAP-TMS'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqtms01at'
+    ApplicationOwner: 'basis'
+
+###############################################
+######         TMS 应用开发服务器          #######
+###############################################
+- targets: ['10.32.194.16:9100']
+  labels:
+    ApplicationName: 'SAP-TMS'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqtms01ad_20220221'
+    ApplicationOwner: '刘飞'
+
+
+
+
+
+###############################################
+######         J3PL 应用生产服务器          #######
+###############################################
+- targets: ['10.32.132.66:9100']
+  labels:
+    ApplicationName: 'J3PL'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqj3pl01ap'
+    ApplicationOwner: '刘飞'
+
+- targets: ['10.32.132.67:9100']
+  labels:
+    ApplicationName: 'J3PL'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqj3pl02ap'
+    ApplicationOwner: '刘飞'
+
+
+
+
+
+###############################################
+######         POS 应用开发服务器          #######
+###############################################
+- targets: ['10.32.196.16:9100']
+  labels:
+    ApplicationName: 'POS'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqpos01ad'
+    ApplicationOwner: '申国磊'
+
+
+
+
+
+###############################################
+######         Hybris 应用测试服务器          #######
+###############################################
+- targets: ['10.32.194.141:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'ytathybb2c1'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.194.144:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'ytathybb2csm'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.194.136:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'hybprepsolrms'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.194.145:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'ytathybb2css1'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.194.142:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'ytathybb2cbs'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.194.146:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'ytathybangular1'
+    ApplicationOwner: '周林'
+
+###############################################
+######         Hybris 应用生产服务器          #######
+###############################################
+- targets: ['10.32.130.70:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'ytaphybb2css1'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.130.66:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'ytaphybb2c1'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.130.71:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'ytaphybb2css2'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.130.68:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'ytaphybb2cbs'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.130.69:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'ytaphybb2csm'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.130.85:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'ytaphybangular1'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.131.66:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'ytaphybb2c2'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.131.85:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'ytaphybangular2'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.130.66:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'ytaphybb2c1'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.131.66:9100'] ##ytaphybb2c2
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'ytaphybb2c2'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.130.69:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'ytaphybb2csm'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.130.70:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'ytaphybb2css1'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.130.71:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'ytaphybb2css2'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.136.41:9100'] ##ytaphybmysql
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'hybmysql'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.130.68:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'ytaphybb2cbs'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.130.85:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'ytaphybangular1'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.130.80:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'hybprodsolrms'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.130.77:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'hybprodbs'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.130.82:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'hybprodsolrss2'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.130.81:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'hybprodsolrss1'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.130.75:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'hybprodapp1'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.131.75:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'hybprodapp2'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.136.44:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'hybproddbdg'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.130.75:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'hybprodapp1'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.130.80:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'hybprodsolrms'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.130.81:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'hybprodsolrss1'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.130.82:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'hybprodsolrss2'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.130.77:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'hybprodbs'
+    ApplicationOwner: '周林'
+
+###############################################
+######         Hybris 数据库服务器          #######
+###############################################
+- targets: ['10.32.136.43:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'hybrisdb'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.200.22:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'hybrisdb'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.136.41:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'hybmysql'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.136.42:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'hybb2cdb'
+    ApplicationOwner: '周林'
+
+###############################################
+######        Hybris  应用开发服务器          #######
+###############################################
+- targets: ['10.32.200.21:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'hybrisdev'
+    ApplicationOwner: '周林'
+
+###############################################
+######        Hybris  不知道什么服务器          #######
+###############################################
+- targets: ['10.32.194.149:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'hybriscr'
+    ApplicationOwner: '周林'
+
+###############################################
+######        Hybris  数据库生产服务器          #######
+###############################################
+- targets: ['10.32.200.20:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'hybprepdb'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.194.139:9100']
+  labels:
+    ApplicationName: 'Hybris'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'hybprepbs'
+    ApplicationOwner: '周林'
+
+
+
+
+
+###############################################
+######         SLT 数据库生产服务器          #######
+###############################################
+- targets: ['10.32.136.26:9100']
+  labels:
+    ApplicationName: 'SAP-SLT'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqslt01dp'
+    ApplicationOwner: 'basis'
+
+- targets: ['10.32.137.26:9100']
+  labels:
+    ApplicationName: 'SAP-SLT'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqslt11dp'
+    ApplicationOwner: 'basis'
+
+###############################################
+######         SLT 应用生产服务器          #######
+###############################################
+- targets: ['10.32.130.51:9100']
+  labels:
+    ApplicationName: 'SAP-SLT'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqslt01sp'
+    ApplicationOwner: 'basis'
+
+- targets: ['10.32.131.51:9100']
+  labels:
+    ApplicationName: 'SAP-SLT'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqslt02sp'
+    ApplicationOwner: 'basis'
+
+- targets: ['10.32.130.52:9100']
+  labels:
+    ApplicationName: 'SAP-SLT'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqslt01ap'
+    ApplicationOwner: 'basis'
+
+- targets: ['10.32.130.53:9100']
+  labels:
+    ApplicationName: 'SAP-SLT'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqslt02ap'
+    ApplicationOwner: 'basis'
+
+###############################################
+######         SLT 应用测试服务器          #######
+###############################################
+- targets: ['10.32.194.126:9100']
+  labels:
+    ApplicationName: 'SAP-SLT'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqslt01at'
+    ApplicationOwner: 'basis'
+
+
+
+
+
+###############################################
+######         平台开发 应用测试服务器          #######
+###############################################
+- targets: ['10.32.196.149:9100']
+  labels:
+    ApplicationName: '平台开发'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqptkf01at-new'
+    ApplicationOwner: '刘飞'
+    server_manager: '杨倩'
+
+
+
+
+
+###############################################
+######         DAG 数据库生产服务器          #######
+###############################################
+- targets: ['10.32.136.62:9100']
+  labels:
+    ApplicationName: 'DAG'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqdagl01dp'
+    notes: 'archivesdb'
+    ApplicationOwner: '季云峰'
+
+
+
+
+
+###############################################
+######         BPM 数据库测试服务器          #######
+###############################################
+- targets: ['10.32.200.61:9100']
+  labels:
+    ApplicationName: 'BPM'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqbpm01dt'
+    ApplicationOwner: '张莉'
+
+###############################################
+######         BPM 数据库开发服务器          #######
+###############################################
+- targets: ['10.32.200.60:9100']
+  labels:
+    ApplicationName: 'BPM'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqbpm01dd'
+    ApplicationOwner: '张莉'
+
+###############################################
+######         BPM 数据库服务器          #######
+###############################################
+- targets: ['10.32.9.154:9100'] ##bpmdb
+  labels:
+    ApplicationName: 'BPM'
+    ApplicationRole: ''
+    Environment: 'unknown'
+    Hostname: 'DBOS-SAPBPMDB-154'
+    ApplicationOwner: '张莉'
+
+
+
+
+
+###############################################
+######         智能印章znyz 数据库测试服务器          #######
+###############################################
+- targets: ['10.32.200.62:9100']
+  labels:
+    ApplicationName: '智能印章'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqznyz01dt'
+    ApplicationOwner: '季云峰'
+
+###############################################
+######         智能印章znyz 数据库生产服务器          #######
+###############################################
+- targets: ['10.32.136.61:9100']
+  labels:
+    ApplicationName: '智能印章'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqznyz01dp'
+    ApplicationOwner: '季云峰'
+
+
+
+
+
+###############################################
+######         吉祥水费用jxsfy 应用生产服务器          #######
+###############################################
+- targets: ['10.32.134.100:9100']
+  labels:
+    ApplicationName: '吉祥水费用'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqjxsfy01ap'
+    ApplicationOwner: '周林'
+
+###############################################
+######         吉祥水费用jxsfy 应用开发服务器          #######
+###############################################
+- targets: ['10.32.198.11:9100']
+  labels:
+    ApplicationName: '吉祥水费用'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqjxsfy01ad'
+    ApplicationOwner: 'basis'
+
+
+
+
+
+###############################################
+######         官网gw 应用测试服务器          #######
+###############################################
+- targets: ['10.32.198.61:9100']
+  labels:
+    ApplicationName: '官网'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqgw01at'
+    ApplicationOwner: '周林'
+
+###############################################
+######         官网gw 应用开发服务器          #######
+###############################################
+- targets: ['10.32.134.61:9100']  ##guanwang
+  labels:
+    ApplicationName: '官网'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqgw01ap'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.135.62:9100']  ##guanwang
+  labels:
+    ApplicationName: '官网'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqgw02ap'
+    ApplicationOwner: '周林'
+
+
+
+
+
+###############################################
+######         协同致信 数据库生产服务器          #######
+###############################################
+- targets: ['10.32.136.59:9100']
+  labels:
+    ApplicationName: '协同致信'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqsohuu01dp'
+    notes: 'awsdpsohuuoa103'
+    ApplicationOwner: '季云峰'
+
+###############################################
+######        协同致信  数据库测试服务器          #######
+###############################################
+- targets: ['10.32.200.56:9100']
+  labels:
+    ApplicationName: '协同致信'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqsohuuoa01dt'
+    ApplicationOwner: '季云峰'
+
+
+
+
+
+###############################################
+######         费用管理系统FEE 应用生产服务器          #######
+###############################################
+- targets: ['10.32.135.16:9100']
+  labels:
+    ApplicationName: '费用管理系统'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqfee02ap'
+    ApplicationOwner: '栾小云'
+
+- targets: ['10.32.134.16:9100']
+  labels:
+    ApplicationName: 'FEE'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqfee01ap'
+    ApplicationOwner: '栾小云'
+
+###############################################
+######        费用管理系统FEE  应用测试服务器          #######
+###############################################
+- targets: ['10.32.196.121:9100']
+  labels:
+    ApplicationName: '费用管理系统'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqfee01at'
+    APP: 'FEE(费用系统）'
+    ApplicationOwner: '栾小云'
+    server_manager: '李媛媛'
+
+###############################################
+######        费用管理系统FEE  应用开发服务器          #######
+###############################################
+- targets: ['10.32.196.21:9100']
+  labels:
+    ApplicationName: '费用管理系统'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqfee01ad'
+    ApplicationOwner: '栾小云'
+
+
+
+
+
+###############################################
+######         SAP 数据库生产服务器          #######
+###############################################
+- targets: ['10.32.9.151:9100']
+  labels:
+    ApplicationName: 'SAP'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'DBOS-SAPDB-151'
+    ApplicationOwner: 'basis'
+
+- targets: ['10.32.136.52:9100']
+  labels:
+    ApplicationName: 'SAP'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqsapdb01dp'
+    ApplicationOwner: 'basis'
+
+###############################################
+######        SAP  数据库测试服务器          #######
+###############################################
+- targets: ['10.32.200.54:9100']
+  labels:
+    ApplicationName: 'SAP'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqsap01dt'
+    ApplicationOwner: 'basis'
+
+###############################################
+######        SAP  数据库开发服务器          #######
+###############################################
+- targets: ['10.32.200.51:9100']
+  labels:
+    ApplicationName: 'SAP'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqsap01dd'
+    ApplicationOwner: 'basis'
+
+
+
+
+
+###############################################
+######         仁护生app 应用生产服务器          #######
+###############################################
+- targets: ['10.32.132.26:9100']
+  labels:
+    ApplicationName: '仁护生app'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqrhs01ap'
+    ApplicationOwner: '周林'
+
+###############################################
+######        仁护生app  应用测试服务器          #######
+###############################################
+- targets: ['10.32.196.145:9100']
+  labels:
+    ApplicationName: '仁护生app'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqrhs01at'
+    ApplicationOwner: '1805188'
+
+
+
+
+
+###############################################
+######         商业流向sylx 应用生产服务器          #######
+###############################################
+- targets: ['10.32.132.96:9100']
+  labels:
+    ApplicationName: '商业流向'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqsylx01ap'
+    ApplicationOwner: '曲雯雯'
+
+- targets: ['10.32.133.96:9100']
+  labels:
+    ApplicationName: '商业流向'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqsylx02ap'
+    ApplicationOwner: '季云峰'
+
+###############################################
+######         商业流向sylx 应用测试服务器          #######
+###############################################
+- targets: ['10.32.196.147:9100']
+  labels:
+    ApplicationName: '商业流向'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqsylx01at'
+    ApplicationOwner: '曲雯雯'
+
+
+
+
+
+###############################################
+######         ECM 应用生产服务器          #######
+###############################################
+- targets: ['10.32.134.210:9100']
+  labels:
+    ApplicationName: 'ECM'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqotas01ap'
+    ApplicationOwner: '季云峰'
+
+- targets: ['10.32.134.211:9100']
+  labels:
+    ApplicationName: 'ECM'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqotas02ap'
+    ApplicationOwner: '季云峰'
+
+- targets: ['10.32.134.204:9100']
+  labels:
+    ApplicationName: 'ECM'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqotbs01ap'
+    ApplicationOwner: '季云峰'
+
+###############################################
+######         ECM 应用开发服务器          #######
+###############################################
+- targets: ['10.32.196.164:9100']
+  labels:
+    ApplicationName: 'ECM'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqotas01ad'
+    ApplicationOwner: '季云峰'
+
+- targets: ['10.32.196.165:9100']
+  labels:
+    ApplicationName: 'ECM'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqotbs01ad'
+    ApplicationOwner: '季云峰'
+
+###############################################
+######        ECM  数据库开发服务器          #######
+###############################################
+- targets: ['10.32.200.52:9100']
+  labels:
+    ApplicationName: 'ECM'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqot01dd'
+    ApplicationOwner: '季云峰'
+
+- targets: ['10.32.200.53:9100']
+  labels:
+    ApplicationName: 'ECM'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqot02dd'
+    ApplicationOwner: '季云峰'
+
+
+
+
+
+###############################################
+######         PI 应用生产服务器          #######
+###############################################
+- targets: ['10.32.130.41:9100']
+  labels:
+    ApplicationName: 'PI'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqpi01sp'
+    ApplicationOwner: '李权'
+
+- targets: ['10.32.130.42:9100']
+  labels:
+    ApplicationName: 'PI'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqpi01ap'
+    ApplicationOwner: '李权'
+
+- targets: ['10.32.130.43:9100']
+  labels:
+    ApplicationName: 'PI'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqpi02ap'
+    ApplicationOwner: '李权'
+
+- targets: ['10.32.131.41:9100']
+  labels:
+    ApplicationName: 'PI'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqpi02sp'
+    ApplicationOwner: '李权'
+
+###############################################
+######        PI  数据库开发服务器          #######
+###############################################
+- targets: ['10.32.136.21:9100']
+  labels:
+    ApplicationName: 'PI'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqpi01dp'
+    ApplicationOwner: '李权'
+
+- targets: ['10.32.137.21:9100']
+  labels:
+    ApplicationName: 'PI'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqpi11dp'
+    ApplicationOwner: '李权'
+
+###############################################
+######        PI  应用开发服务器          #######
+###############################################
+- targets: ['10.32.194.21:9100']
+  labels:
+    ApplicationName: PI'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'pidev'
+    ApplicationOwner: 'basis'
+
+###############################################
+######        PI  应用测试服务器          #######
+###############################################
+- targets: ['10.32.194.121:9100']
+  labels:
+    ApplicationName: 'PI'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'pitest20211220'
+    ApplicationOwner: '李权'
+
+
+
+
+
+###############################################
+######        报工系统rhweb 应用生产服务器         #######
+###############################################
+- targets: ['10.32.134.36:9100']
+  labels:
+    ApplicationName: '报工系统'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqrhweb01ap'
+    ApplicationOwner: '周林'
+
+
+
+
+
+###############################################
+######        第三方third 应用生产服务器         #######
+###############################################
+- targets: ['10.32.134.46:9100']
+  labels:
+    ApplicationName: '第三方'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqthird01ap'
+    ApplicationOwner: '周林'
+
+###############################################
+######        第三方third  数据库生产服务器          #######
+###############################################
+- targets: ['10.32.136.55:9100']
+  labels:
+    ApplicationName: '第三方'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqthirddb01dp'
+    ApplicationOwner: 'basis'
+
+###############################################
+######        第三方third  数据库测试服务器          #######
+###############################################
+- targets: ['10.32.200.59:9100']
+  labels:
+    ApplicationName: '第三方'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqthird01dt'
+    ApplicationOwner: '周林'
+
+###############################################
+######        第三方third  应用测试服务器          #######
+###############################################
+- targets: ['10.32.196.146:9100']
+  labels:
+    ApplicationName: '第三方'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqthird01at'
+    ApplicationOwner: '周林'
+
+
+
+
+
+###############################################
+######         员工自助 应用生产服务器          #######
+###############################################
+- targets: ['10.32.134.11:9100']
+  labels:
+    ApplicationName: '员工自助'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqhress01ap'
+    ApplicationOwner: '周林'
+
+###############################################
+######         员工自助 应用测试服务器          #######
+###############################################
+- targets: ['10.32.196.144:9100']
+  labels:
+    ApplicationName: '员工自助'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqhress01at'
+    APP: '员工自助'
+    ApplicationOwner: '王建军'
+
+
+
+
+
+###############################################
+######        易数  应用生产服务器          #######
+###############################################
+- targets: ['10.32.134.31:9100']
+  labels:
+    ApplicationName: '易数'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqedata01ap'
+    ApplicationOwner: '2005217'
+
+
+
+
+###############################################
+######        unknown-rcdb  数据库生产服务器          #######
+###############################################
+- targets: ['10.32.136.53:9100']
+  labels:
+    ApplicationName: 'unknown'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqrcdb01dp'
+    ApplicationOwner: 'basis'
+
+
+
+
+###############################################
+######        unknown-rhdb  数据库生产服务器          #######
+###############################################
+- targets: ['10.32.136.54:9100']
+  labels:
+    ApplicationName: 'unknown'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqrhdb01dp'
+    ApplicationOwner: 'basis'
+
+
+
+
+
+###############################################
+######        企业邮箱mail  应用生产服务器          #######
+###############################################
+- targets: ['10.32.128.71:9100']
+  labels:
+    ApplicationName: '企业邮箱'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqmail01ap'
+    ApplicationOwner: '季云峰'
+
+###############################################
+######        企业邮箱mail  数据库生产服务器          #######
+###############################################
+- targets: ['10.32.136.58:9100']
+  labels:
+    ApplicationName: '企业邮箱'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqmail02dp'
+    ApplicationOwner: '季云峰'
+
+- targets: ['10.32.136.60:9100']
+  labels:
+    ApplicationName: '企业邮箱'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqmail01dp'
+    ApplicationOwner: '季云峰'
+
+
+
+
+
+###############################################
+######        院内物流ynwl  应用测试服务器          #######
+###############################################
+- targets: ['10.32.196.141:9100']
+  labels:
+    ApplicationName: '院内物流'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqynwl01at'
+    ApplicationOwner: '1305030'
+
+
+
+###############################################
+######        ERP  数据库测试服务器          #######
+###############################################
+- targets: ['10.32.200.58:9100']
+  labels:
+    ApplicationName: 'ERP'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqerp01dt'
+    ApplicationOwner: 'basis'
+
+
+
+
+
+###############################################
+######        移动平台mobile  应用开发服务器          #######
+###############################################
+- targets: ['10.32.196.41:9100']
+  labels:
+    ApplicationName: '移动平台'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqmobile01ad'
+    ApplicationOwner: '1603069'
+
+
+
+
+
+###############################################
+######        WMS  应用开发服务器          #######
+###############################################
+- targets: ['10.32.196.36:9100']
+  labels:
+    ApplicationName: 'WMS'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqwms01ad'
+    ApplicationOwner: '刘飞'
+
+
+
+
+
+###############################################
+######        招标  应用开发服务器          #######
+###############################################
+- targets: ['10.32.196.43:9100']
+  labels:
+    ApplicationName: '招标'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chq107zb01ad'
+
+
+
+
+
+###############################################
+######        致信  应用测试服务器          #######
+###############################################
+- targets: ['10.32.196.132:9100']
+  labels:
+    ApplicationName: '致信'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqzhixin02at'
+    ApplicationOwner: '季云峰'
+
+###############################################
+######        致信  应用开发服务器          #######
+###############################################
+- targets: ['10.32.134.58:9100']
+  labels:
+    ApplicationName: '致信'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqzx01ap'
+    notes: '协同M3'
+    ApplicationOwner: '季云峰'
+
+
+
+
+
+###############################################
+######        代码仓库gitlab  应用生产服务器          #######
+###############################################
+- targets: ['10.32.134.26:9100']
+  labels:
+    ApplicationName: '代码仓库gitlab'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqgitlab01ap'
+    ApplicationOwner: '李翔'
+
+
+
+
+
+###############################################
+######        RDB  数据库生产服务器          #######
+###############################################
+- targets: ['10.32.136.51:9100']
+  labels:
+    ApplicationName: 'RDB'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqrdb01dp'
+    ApplicationOwner: 'basis'
+
+- targets: ['10.32.137.51:9100']
+  labels:
+    ApplicationName: 'RDB'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqrdb02dp'
+    ApplicationOwner: 'basis'
+
+###############################################
+######        RDB  数据库测试服务器          #######
+###############################################
+- targets: ['10.32.200.55:9100']
+  labels:
+    ApplicationName: 'RDB'
+    ApplicationRole: ''
+    Environment: 'nonprod-rk'
+    Hostname: 'chqrdb01dt'
+    ApplicationOwner: 'basis'
+
+
+
+
+
+
+
+
+#    - targets: ['10.32.173.187:9100']
+#    - targets: ['10.32.174.185:9100']
+###############################################
+######        易流视频中心  应用生产服务器          #######
+###############################################
+- targets: ['10.31.0.75:9100'] ##易流视频中心
+  labels:
+    ApplicationName: '易流视频中心'
+    ApplicationRole: ''
+    Environment: 'unknown'
+    Hostname: 'HWAP-YLVideo-75'
+    ApplicationOwner: 'unknown'
+
+###############################################
+######        易流业务服务  应用生产服务器          #######
+###############################################
+- targets: ['10.31.0.73:9100'] ##易流业务服务
+  labels:
+    ApplicationName: '易流业务服务'
+    ApplicationRole: ''
+    Environment: 'unknown'
+    Hostname: 'HWAP-YLBusiness-73'
+    ApplicationOwner: 'unknown'
+
+###############################################
+######        易流公共组件服务器  应用生产服务器          #######
+###############################################
+- targets: ['10.31.0.71:9100']  ##易流公共组件服务器
+  labels:
+    ApplicationName: '易流公共组件服务器'
+    ApplicationRole: ''
+    Environment: 'unknown'
+    Hostname: 'HWAP-YLPubCMPT-71'
+    ApplicationOwner: 'unknown'
+
+###############################################
+######        易流实时分析iot网关  应用生产服务器          #######
+###############################################
+- targets: ['10.31.0.72:9100']  ##易流实时分析iot网关
+  labels:
+    ApplicationName: '易流实时分析iot网关'
+    ApplicationRole: ''
+    Environment: 'unknown'
+    Hostname: 'HWAP-YLIOTDataGW-72'
+    ApplicationOwner: 'unknown'
+
+
+
+
+
+###############################################
+######        CAS  应用生产服务器          #######
+###############################################
+- targets: ['10.32.134.168:9100']
+  labels:
+    ApplicationName: 'CAS'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqcas01ap'
+
+- targets: ['10.32.135.169:9100'] ##cas
+  labels:
+    ApplicationName: 'CAS'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqcas02ap'
+
+
+
+
+
+###############################################
+######        Liferay  应用生产服务器          #######
+###############################################
+- targets: ['10.32.134.67:9100']
+  labels:
+    ApplicationName: 'Liferay'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqes03ap'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.134.65:9100']
+  labels:
+    ApplicationName: 'Liferay'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqes01ap'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.135.66:9100'] ##oa-es
+  labels:
+    ApplicationName: 'Liferay'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqes02ap'
+    ApplicationOwner: '周林'
+
+
+
+
+
+###############################################
+######        OA  应用生产服务器          #######
+###############################################
+- targets: ['10.32.134.87:9100'] ##oa
+  labels:
+    ApplicationName: 'OA'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqoa01ap'
+    ApplicationOwner: '周林'
+
+- targets: ['10.32.135.88:9100'] ##oa
+  labels:
+    ApplicationName: 'OA'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'chqoa02ap'
+    ApplicationOwner: '周林'
+
+
+
+
+
+
+###############################################
+######         不知道 unknown          #######
+###############################################
+- targets: ['10.31.0.101:9100']
+  labels:
+    ApplicationName: 'unknown'
+    ApplicationRole: ''
+    Environment: 'unknown'
+    Hostname: 'HWDP-xecmoracle1-101'
+    ApplicationOwner: 'unknown'
+
+- targets: ['10.31.0.102:9100']
+  labels:
+    ApplicationName: 'unknown'
+    ApplicationRole: ''
+    Environment: 'unknown'
+    Hostname: 'xecmoracle2'
+    ApplicationOwner: 'unknown'
+
+- targets: ['10.32.9.101:9100']
+  labels:
+    ApplicationName: 'unknown'
+    ApplicationRole: ''
+    Environment: 'prod-rk'
+    Hostname: 'YTDP-RCDB-101'
+    ApplicationOwner: 'unknown'

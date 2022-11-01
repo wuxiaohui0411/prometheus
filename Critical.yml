@@ -1,0 +1,62 @@
+groups:
+- name: "Linux Critical Alert Rules"
+  rules:
+    - alert: "The average CPU utilization exceeds 95% within five minutes"
+      expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 90
+      for: 3m
+      labels:
+        kind: Infra #kind 分类为Infra Application
+        priority: P1 #P1 P2 P3 P4 P5
+        severity: Critical  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: LinuxCPUAlert  #填写告警类型
+        level: 'firing' #等级分类为firing或warning
+      annotations:
+        summary: "Instance:{{ $labels.Hostname }} CPU usage alert,The current value is {{ $value }}."
+        description: "Instacne:{{ $labels.Hostname }}CPU usage alert,private IP: {{ $labels.instance }} Application：{{ $labels.ApplicationRole }} ApplicationOwner：{{ $labels.ApplicationOwner }} "
+        value: "{{ $value }}"
+
+    - alert: "Memory utilization is greater than 97%"
+      expr: (1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100 > 98
+      for: 1m
+      labels:
+        kind: Infra #kind 分类为Infra Application
+        priority: P1 #P1 P2 P3 P4 P5
+        severity: Critical  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: LinuxMemAlert   #填写告警类型
+        level: 'firing' #等级分类为firing或warning
+      annotations:
+        summary: "Instance:{{ $labels.Hostname }}Memory usage alarm, the current value is {{ $value }}"
+        description: "Instance: {{ $labels.Hostname }}Memory usage alarm,private IP:{{ $labels.instance }} 所属应用：{{ $labels.ApplicationRole }} 应用负责人：{{ $labels.ApplicationOwner }}"
+        value: "{{ $value }}"
+
+
+- name: Windows服务器系统报警规则
+  rules:
+    - alert: 五分钟内CPU平均利用率超过90%
+      expr: 100 - (avg by (instance) (rate(windows_cpu_time_total{mode="idle"}[5m])) * 100) >= 90
+      for: 3m
+      labels:
+        kind: Infra #kind 分类为Infra Application
+        priority: P2 #P1 P2 P3 P4 P5
+        severity: High #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: WindowsCPU告警  #填写告警类型
+        level: 'firing' #等级分类为firing或warning
+      annotations:
+        summary: "服务器{{ $labels.hostname }}CPU使用率告警,当前值为{{ $value }}"
+        description: "\n  服务器{{ $labels.hostname }}CPU使用率告警.服务器IP: {{ $labels.instance }} 所属应用：{{ $labels.ApplicationRole }} 应用负责人：{{ $labels.ApplicationOwner }}"
+        value: "{{ $value }}%"
+
+
+    - alert: 内存利用率大于90%
+      expr: 100 - ((windows_os_physical_memory_free_bytes / windows_cs_physical_memory_bytes) * 100) >= 90
+      for: 1m
+      labels:
+        kind: Infra #kind 分类为Infra Application
+        priority: P2 #P1 P2 P3 P4 P5
+        severity: High  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: Windows内存告警  #填写告警类型
+        level: 'firing' #等级分类为firing或warning
+      annotations:
+        summary: "服务器{{ $labels.Hostname }}内存使用率告警,当前值为{{ $value }}"
+        description: "\n  服务器{{ $labels.Hostname }}内存使用率告警,服务器IP: {{ $labels.instance }} 所属应用：{{ $labels.ApplicationRole }} 应用负责人：{{ $labels.ApplicationOwner }}"
+        value: "{{ $value }}%"

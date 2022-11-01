@@ -1,0 +1,44 @@
+groups:
+- name: "Linux Moderate Alerts"
+  rules:
+    - alert: "Memory is filling up (< 20% left)"
+      expr: (1 - node_memory_MemAvailable_bytes{ApplicationName!~"SAP.*"} / node_memory_MemTotal_bytes{ApplicationName!~"SAP.*"}) * 100 >= 80
+      for: 5m
+      labels:
+        kind: Infra #kind 分类为Infra Application Security
+        priority: P3 #P1 P2 P3 P4 P5
+        severity: Moderate  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: Memory  #填写告警类型
+        level: 'Warning' #等级分类为Firing或Warning
+      annotations:
+        Summary: "Host  {{ $labels.Hostname }}  memory is filling up (< 20% left) "
+        Description: "Host {{ $labels.Hostname }} memory is filling up (< 20% left)\n  Instance = {{ $labels.instance }}\n  Value = {{ $value }}\n "
+
+    - alert: "Disk latency is growing (read&write operations > 100ms)"
+      expr: (rate(node_disk_read_time_seconds_total[1m]) / rate(node_disk_reads_completed_total[1m]) > 0.1 and rate(node_disk_reads_completed_total[1m]) > 0) or (rate(node_disk_write_time_seconds_total[1m]) / rate(node_disk_writes_completed_total[1m]) > 0.1 and rate(node_disk_writes_completed_total[1m]) > 0)
+      for: 1m
+      labels:
+        kind: Infra #kind 分类为Infra Application Security
+        priority: P3 #P1 P2 P3 P4 P5
+        severity: Moderate  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: Disk  #填写告警类型
+        level: 'Firing' #等级分类为Firing或Warning
+      annotations:
+        Summary: "Host  {{ $labels.Hostname }}  Disk latency is growing (read&write operations > 100ms) "
+        Description: "Host {{ $labels.Hostname }} Disk latency is growing (read&write operations > 100ms)\n  Instance = {{ $labels.instance }}\n  Value = {{ $value }}\n  Device = {{ $labels.device }}\n  Fstype = {{ $labels.fstype }}\n  Mountpoint = {{ $labels.mountpoint}} "
+
+
+- name: "Windows Moderate Alerts"
+  rules:
+    - alert: "Memory usage is more than 80%"
+      expr: 100 - ((windows_os_physical_memory_free_bytes / windows_cs_physical_memory_bytes) * 100) >= 80
+      for: 5m
+      labels:
+        kind: Infra #kind 分类为Infra Application Security
+        priority: P3 #P1 P2 P3 P4 P5
+        severity: Moderate  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: Memory  #填写告警类型
+        level: 'Firing' #等级分类为Firing或Warning
+      annotations:
+        summary: "Windows Server {{ $labels.Hostname }} Memory usage is more than 90% "
+        Description: "Windows Server {{ $labels.Hostname }} Memory usage is more than 90%\n  Instance = {{ $labels.instance }}\n  Value = {{ $value }} "

@@ -1,0 +1,71 @@
+groups:
+- name: "Linux High Alerts"
+  rules:
+    - alert: "Disk is almost full (< 10 % left)"
+      expr: (1 - node_filesystem_avail_bytes/node_filesystem_size_bytes) * 100 >= 90 and (node_filesystem_avail_bytes <= ( 100 * 1024 * 1024 *1024 ))
+      for: 1m
+      labels:
+        kind: Infra #kind 分类为Infra Application Security
+        priority: P5 #P1 P2 P3 P4 P5
+        severity: High  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: Disk  #填写告警类型
+        level: 'Warning' #等级分类为Firing或Warning
+      annotations:
+        Summary: "Host  {{ $labels.Hostname }}  out of disk space "
+        Description: "Host {{ $labels.Hostname }} disk is almost full (< 10% left)\n  Instance = {{ $labels.instance }}\n  Value = {{ $value }}\n  Device = {{ $labels.device }}\n  Fstype = {{ $labels.fstype }}\n  Mountpoint = {{ $labels.mountpoint}} "
+
+    - alert: "CPU load is > 80%"
+      expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) >= 80
+      for: 5m
+      labels:
+        kind: Infra #kind 分类为Infra Application Security
+        priority: P2 #P1 P2 P3 P4 P5
+        severity: High  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: CPU  #填写告警类型
+        level: 'Warning' #等级分类为Firing或Warning
+      annotations:
+        Summary: "Host  {{ $labels.Hostname }}  CPU load is {{ $value }} "
+        Description: "Host {{ $labels.Hostname }} CPU load is > 80%\n  Instance = {{ $labels.instance }}\n  Value = {{ $value }}\n "
+
+    - alert: "Memory is filling up (< 10% left)"
+      expr: (1 - node_memory_MemAvailable_bytes{ApplicationName!~"SAP.*"} / node_memory_MemTotal_bytes{ApplicationName!~"SAP.*"}) * 100 >= 90
+      for: 5m
+      labels:
+        kind: Infra #kind 分类为Infra Application Security
+        priority: P2 #P1 P2 P3 P4 P5
+        severity: High  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: Memory  #填写告警类型
+        level: 'Firing' #等级分类为Firing或Warning
+      annotations:
+        Summary: "Host  {{ $labels.Hostname }}  memory is filling up (< 10% left) "
+        Description: "Host {{ $labels.Hostname }} memory is filling up (< 10% left)\n  Instance = {{ $labels.instance }}\n  Value = {{ $value }}\n "
+
+    - alert: "Disk is almost running out of available inodes (< 10% left)"
+      expr: (1- node_filesystem_files_free / node_filesystem_files) * 100 >= 90
+      for: 1m
+      labels:
+        kind: Infra #kind 分类为Infra Application Security
+        priority: P2 #P1 P2 P3 P4 P5
+        severity: High  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: Disk  #填写告警类型
+        level: 'Firing' #等级分类为Firing或Warning
+      annotations:
+        Summary: "Host  {{ $labels.Hostname }}  Disk is almost running out of available inodes (< 10% left) "
+        Description: "Host {{ $labels.Hostname }} Disk is almost running out of available inodes (< 10% left)\n  Instance = {{ $labels.instance }}\n  Value = {{ $value }}\n  Device = {{ $labels.device }}\n  Fstype = {{ $labels.fstype }}\n  Mountpoint = {{ $labels.mountpoint}} "
+
+- name: "Windows High Alerts"
+  rules:
+    - alert: "Disk usage is more than 85%"
+      expr: (1-windows_logical_disk_free_bytes/windows_logical_disk_size_bytes)*100  > 85 and (windows_logical_disk_free_bytes / (100 * 1024 * 1024 * 1024)) < 1
+      for: 1m
+      labels:
+        kind: Infra #kind 分类为Infra Application Security
+        priority: P2 #P1 P2 P3 P4 P5
+        severity: High  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: Disk  #填写告警类型
+        level: 'Warning' #等级分类为Firing或Warning
+      annotations:
+        summary: "Windows Server {{ $labels.Hostname }} Disk usage is more than 85% "
+        Description: "Windows Server {{ $labels.Hostname }} Disk usage is more than 85%\n  Instance = {{ $labels.instance }}\n  Value = {{ $value }}\n  Volume = {{ $labels.volume }} "
+
+

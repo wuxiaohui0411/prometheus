@@ -1,0 +1,129 @@
+groups:
+- name: "Linux Critical Alerts"
+  rules:
+    - alert: "Disk is almost full (< 5 % left)"
+      expr: (1 - node_filesystem_avail_bytes/node_filesystem_size_bytes) * 100 >= 95 and (node_filesystem_avail_bytes <= ( 50 * 1024 * 1024 *1024 ))
+      for: 1m
+      labels:
+        kind: Infra #kind 分类为Infra Application Security
+        priority: P1 #P1 P2 P3 P4 P5
+        severity: Critical  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: Disk  #填写告警类型
+        level: 'Firing' #等级分类为Firing或Warning
+      annotations:
+        Summary: "Host  {{ $labels.Hostname }}  out of disk space "
+        Description: "Host {{ $labels.Hostname }} disk is almost full (< 5% left)\n  Instance = {{ $labels.instance }}\n  Value = {{ $value }}\n  Device = {{ $labels.device }}\n  Fstype = {{ $labels.fstype }}\n  Mountpoint = {{ $labels.mountpoint}} "
+
+    - alert: "CPU load is > 90%"
+      expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) >= 90
+      for: 5m
+      labels:
+        kind: Infra #kind 分类为Infra Application Security
+        priority: P1 #P1 P2 P3 P4 P5
+        severity: Critical  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: CPU  #填写告警类型
+        level: 'Firing' #等级分类为Firing或Warning
+      annotations:
+        Summary: "Host  {{ $labels.Hostname }}  CPU load is {{ $value }} "
+        Description: "Host {{ $labels.Hostname }} CPU load is > 90%\n  Instance = {{ $labels.instance }}\n  Value = {{ $value }}\n "
+
+    - alert: "Memory is filling up (< 5% left)"
+      expr: (1 - node_memory_MemAvailable_bytes{ApplicationName!~"SAP.*"} / node_memory_MemTotal_bytes{ApplicationName!~"SAP.*"}) * 100 >= 95
+      for: 5m
+      labels:
+        kind: Infra #kind 分类为Infra Application Security
+        priority: P1 #P1 P2 P3 P4 P5
+        severity: Critical  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: Memory  #填写告警类型
+        level: 'Firing' #等级分类为Firing或Warning
+      annotations:
+        Summary: "Host  {{ $labels.Hostname }}  memory is filling up (< 5% left) "
+        Description: "Host {{ $labels.Hostname }} memory is filling up (< 5% left)\n  Instance = {{ $labels.instance }}\n  Value = {{ $value }}\n "
+
+- name: "Windows Critical Alerts"
+  rules:
+    - alert: "Disk usage is more than 90%"
+      expr: (1-windows_logical_disk_free_bytes/windows_logical_disk_size_bytes)*100  > 90 and (windows_logical_disk_free_bytes / (50 * 1024 * 1024 * 1024)) < 1
+      for: 1m
+      labels:
+        kind: Infra #kind 分类为Infra Application Security
+        priority: P1 #P1 P2 P3 P4 P5
+        severity: Critical  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: Disk  #填写告警类型
+        level: 'Firing' #等级分类为Firing或Warning
+      annotations:
+        Summary: "Windows Server {{ $labels.Hostname }} Disk usage is more than 90% "
+        Description: "Windows Server {{ $labels.Hostname }} Disk usage is more than 90%\n  Instance = {{ $labels.instance }}\n  Value = {{ $value }}\n  Volume = {{ $labels.volume }} "
+
+    - alert: "Memory usage is more than 90%"
+      expr: 100 - ((windows_os_physical_memory_free_bytes / windows_cs_physical_memory_bytes) * 100) >= 90
+      for: 5m
+      labels:
+        kind: Infra #kind 分类为Infra Application Security
+        priority: P1 #P1 P2 P3 P4 P5
+        severity: Critical  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: Memory  #填写告警类型
+        level: 'Firing' #等级分类为Firing或Warning
+      annotations:
+        Summary: "Windows Server {{ $labels.Hostname }} Memory usage is more than 90% "
+        Description: "Windows Server {{ $labels.Hostname }} Memory usage is more than 90%\n  Instance = {{ $labels.instance }}\n  Value = {{ $value }} "
+
+    - alert: "CPU Usage is more than 90%"
+      expr: 100 - (avg by (instance) (rate(windows_cpu_time_total{mode="idle"}[5m])) * 100) >= 90
+      for: 5m
+      labels:
+        kind: Infra #kind 分类为Infra Application Security
+        priority: P1 #P1 P2 P3 P4 P5
+        severity: Critical  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: CPU  #填写告警类型
+        level: 'Firing' #等级分类为Firing或Warning
+      annotations:
+        Summary: "Windows Server {{ $labels.Hostname }} CPU Usage is more than 90% "
+        Description: "Windows Server {{ $labels.Hostname }} CPU Usage is more than 90%\n  Instance = {{ $labels.instance }}\n  Value = {{ $value }} "
+
+- name: "Oralce Critical Alerts"
+  rules:
+    - alert: "Tablespace (except Temporary Tablespace) usage is more than 95%"
+      expr: oracledb_realcan_tablespace_all_shiyonglv{tablespacename!~".*TEMP"} > 95
+      for: 1m
+      labels:
+        kind: Application #kind 分类为Infra Application Security
+        priority: P1 #P1 P2 P3 P4 P5
+        severity: Critical  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: Tablespace  #填写告警类型
+        level: 'Firing' #等级分类为Firing或Warning
+      annotations:
+        Summary: "Oracle {{ $labels.dbname }} Tablespace (except Temporary Tablespace) usage is more than 95%"
+        Description: "Oracle {{ $labels.dbname }} Tablespace (except Temporary Tablespace) usage is more than 95%\n  IP = {{ $labels.ipaddr }}\n  TableSpace = {{ $labels.tablespacename }}\n  Used Of Max = {{ $labels.shiyonglv }}\n  Max = {{ $labels.zuidakongjian }}\n  Used = {{ $labels.fenpeiyishiyong }} "
+
+
+- name: "Certificate Critical Alerts"
+  rules:
+    - alert: "The certificate is valid for less than 30 days"
+      expr: (probe_ssl_earliest_cert_expiry{job="cert"} - time())/60/60/24 < 30
+      for: 30m
+      labels:
+        kind: Application
+        priority: P1 #P1 P2 P3 P4 P5
+        severity: Critical  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: Cert  #填写告警类型
+        level: 'warning' #等级分类为firing或warning
+      annotations:
+        Summary: "The certificate is valid for less than 30 days"
+        description: "Web {{ $labels.instance }} The certificate is valid for less than 30 days, Please pay attention to replace the new certificate in time"
+
+
+- name: BPM应用服务告警
+  rules:
+    - alert: "iPortal Website body information error "
+      expr: probe_success{job="bpm_blackbox-https"} == 0
+      for: 1m
+      labels:
+        kind: Application
+        priority: P1 #P1 P2 P3 P4 P5
+        severity: Critical  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: BPM网站监控  #填写告警类型
+        level: 'firing' #等级分类为firing或warning
+      annotations:
+        Summary: "iPortal Website body information error"
+        description: "Website {{ $labels.instance }} iPortal Website body information error"

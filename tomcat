@@ -1,0 +1,6 @@
+  187  mkdir -p /usr/local/jmx/
+  188   wget https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.3.1/jmx_prometheus_javaagent-0.3.1.jar
+  189  cp jmx_prometheus_javaagent-0.3.1.jar /usr/local/jmx/
+  190  touch /usr/local/jmx/config.yaml
+  191  vi /usr/local/jmx/config.yaml
+  192  vi /data/apache-tomcat-7.0.107/bin/catalina.sh

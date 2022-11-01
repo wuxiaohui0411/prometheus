@@ -1,0 +1,11 @@
+- name: Windows磁盘报警规则
+  rules:
+  - alert: Windows服务器磁盘利用率超过90%且剩余空间小于50G
+    expr: (1-windows_logical_disk_free_bytes/windows_logical_disk_size_bytes)*100  > 90 and   (windows_logical_disk_free_bytes / (50 * 1024 * 1024 * 1024)) < 1
+    for: 1m
+    labels:
+      severity: High
+    annotations:
+      summary: "Windows服务器{{ $labels.hostname }}磁盘使用率告警"
+      description: "Disk is almost full (< 5% left)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+      value: "{{ $value }}"

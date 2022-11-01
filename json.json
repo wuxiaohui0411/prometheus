@@ -1,0 +1,125 @@
+{
+    "version": "0",
+    "id": "953e79bf-1da3-25a8-5838-9e6dbde0b1f9",
+    "detail-type": "AWS API Call via CloudTrail",
+    "source": "aws.s3",
+    "account": "460558458182",
+    "time": "2022-09-05T02:40:37Z",
+    "region": "cn-northwest-1",
+    "resources": [],
+    "detail": {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "AROAWWO3MLVDDDJFL5MNN:02204053",
+        "arn": "arn:aws-cn:sts::460558458182:assumed-role/ADFS-AdminAccess/02204053",
+        "accountId": "460558458182",
+        "accessKeyId": "ASIAWWO3MLVDG4FR7MVM",
+        "sessionContext": {
+          "sessionIssuer": {
+            "type": "Role",
+            "principalId": "AROAWWO3MLVDDDJFL5MNN",
+            "arn": "arn:aws-cn:iam::460558458182:role/ADFS-AdminAccess",
+            "accountId": "460558458182",
+            "userName": "ADFS-AdminAccess"
+          },
+          "webIdFederationData": {},
+          "attributes": {
+            "creationDate": "2022-09-05T01:40:55Z",
+            "mfaAuthenticated": "false"
+          }
+        }
+      },
+      "eventTime": "2022-09-05T02:40:37Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "PutBucketPolicy",
+      "awsRegion": "cn-northwest-1",
+      "sourceIPAddress": "221.0.95.51",
+      "userAgent": "[S3Console/0.4, aws-internal/3 aws-sdk-java/1.11.1030 Linux/5.4.207-126.363.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.302-b08 java/1.8.0_302 vendor/Oracle_Corporation cfg/retry-mode/standard]",
+      "errorCode": "MalformedPolicy",
+      "errorMessage": "Policy has invalid resource",
+      "requestParameters": {
+        "bucketPolicy": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Sid": "AWSCloudTrailAclCheck20150319",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "cloudtrail.amazonaws.com"
+              },
+              "Action": "s3:GetBucketAcl",
+              "Resource": "arn:aws-cn:s3:::aws-cloudtrail-logs-460558458182-realcan",
+              "Condition": {
+                "StringEquals": {
+                  "AWS:SourceArn": "arn:aws-cn:cloudtrail:cn-northwest-1:460558458182:trail/UAT-Trail"
+                }
+              }
+            },
+            {
+              "Sid": "AWSCloudTrailWrite20150319",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "cloudtrail.amazonaws.com"
+              },
+              "Action": "s3:PutObject",
+              "Resource": "arn:aws-cn:s3:::aws-cloudtrail-logs-460558458182-realcan/AWSLogs/460558458182/*",
+              "Condition": {
+                "StringEquals": {
+                  "AWS:SourceArn": "arn:aws-cn:cloudtrail:cn-northwest-1:460558458182:trail/UAT-Trail",
+                  "s3:x-amz-acl": "bucket-owner-full-control"
+                }
+              }
+            },
+            {
+              "Sid": "AllowSSLRequestsOnly",
+              "Effect": "Deny",
+              "Principal": "*",
+              "Action": "s3:*",
+              "Resource": [
+                "arn:aws-cn:s3:::rkt-uat-fileservice",
+                "arn:aws-cn:s3:::rkt-uat-fileservice/*"
+              ],
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": "false"
+                }
+              }
+            }
+          ]
+        },
+        "bucketName": "aws-cloudtrail-logs-460558458182-realcan",
+        "Host": "s3.cn-northwest-1.amazonaws.com.cn",
+        "policy": ""
+      },
+      "responseElements": null,
+      "additionalEventData": {
+        "SignatureVersion": "SigV4",
+        "CipherSuite": "ECDHE-RSA-AES128-GCM-SHA256",
+        "bytesTransferredIn": 1324,
+        "AuthenticationMethod": "AuthHeader",
+        "x-amz-id-2": "QVc2OV/YlQjwjXVH38QWePre/fbyIdvWHpWxd/eX2mfFdsNfIKIPpT6vYm4z1C0TElP2bTkzFHI=",
+        "bytesTransferredOut": 312
+      },
+      "requestID": "MRMCRTZ5TCQVESTQ",
+      "eventID": "53ad8e6c-da94-4a4e-90ed-6c268a1fd693",
+      "readOnly": false,
+      "resources": [
+        {
+          "accountId": "460558458182",
+          "type": "AWS::S3::Bucket",
+          "ARN": "arn:aws-cn:s3:::aws-cloudtrail-logs-460558458182-realcan"
+        }
+      ],
+      "eventType": "AwsApiCall",
+      "managementEvent": true,
+      "recipientAccountId": "460558458182",
+      "vpcEndpointId": "vpce-5327c13a",
+      "eventCategory": "Management",
+      "tlsDetails": {
+        "tlsVersion": "TLSv1.2",
+        "cipherSuite": "ECDHE-RSA-AES128-GCM-SHA256",
+        "clientProvidedHostHeader": "s3.cn-northwest-1.amazonaws.com.cn"
+      }
+    }
+  }
