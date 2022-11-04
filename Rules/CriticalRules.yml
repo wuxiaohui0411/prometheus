@@ -113,7 +113,7 @@ groups:
         description: "Web {{ $labels.instance }} The certificate is valid for less than 30 days, Please pay attention to replace the new certificate in time"
 
 
-- name: BPM应用服务告警
+- name: "BPM Website body information error"
   rules:
     - alert: "iPortal Website body information error "
       expr: probe_success{job="bpm_blackbox-https"} == 0
@@ -122,7 +122,7 @@ groups:
         kind: Application
         priority: P1 #P1 P2 P3 P4 P5
         severity: Critical  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
-        type: BPM网站监控  #填写告警类型
+        type: Web  #填写告警类型
         level: 'firing' #等级分类为firing或warning
       annotations:
         Summary: "iPortal Website body information error"
