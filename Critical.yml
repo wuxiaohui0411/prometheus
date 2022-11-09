@@ -1,62 +1,158 @@
 groups:
-- name: "Linux Critical Alert Rules"
+- name: Linux服务器系统告警规则
   rules:
-    - alert: "The average CPU utilization exceeds 95% within five minutes"
-      expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 90
-      for: 3m
-      labels:
-        kind: Infra #kind 分类为Infra Application
-        priority: P1 #P1 P2 P3 P4 P5
-        severity: Critical  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
-        type: LinuxCPUAlert  #填写告警类型
-        level: 'firing' #等级分类为firing或warning
-      annotations:
-        summary: "Instance:{{ $labels.Hostname }} CPU usage alert,The current value is {{ $value }}."
-        description: "Instacne:{{ $labels.Hostname }}CPU usage alert,private IP: {{ $labels.instance }} Application：{{ $labels.ApplicationRole }} ApplicationOwner：{{ $labels.ApplicationOwner }} "
-        value: "{{ $value }}"
-
-    - alert: "Memory utilization is greater than 97%"
-      expr: (1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100 > 98
+    - alert: 磁盘利用率超过90%且剩余空间低于50GB
+      expr: (1 - node_filesystem_avail_bytes/node_filesystem_size_bytes) * 100 >= 90 and (node_filesystem_avail_bytes <= (50*1024*1024*1024))
       for: 1m
       labels:
-        kind: Infra #kind 分类为Infra Application
+        kind: Infra
         priority: P1 #P1 P2 P3 P4 P5
         severity: Critical  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
-        type: LinuxMemAlert   #填写告警类型
+        type: Linux磁盘告警  #填写告警类型
         level: 'firing' #等级分类为firing或warning
       annotations:
-        summary: "Instance:{{ $labels.Hostname }}Memory usage alarm, the current value is {{ $value }}"
-        description: "Instance: {{ $labels.Hostname }}Memory usage alarm,private IP:{{ $labels.instance }} 所属应用：{{ $labels.ApplicationRole }} 应用负责人：{{ $labels.ApplicationOwner }}"
+        summary: "Linux服务器{{ $labels.Hostname }}磁盘使用率告警,当前值为{{ $value }}"
+        description: "服务器{{ $labels.Hostname }}磁盘使用率告警,告警磁盘挂载点为{{ $labels.mountpoint }},文件系统类型为{{ $labels.fstype }},物理盘位置为{{ $labels.device }}.服务器IP: {{ $labels.instance }} 所属应用：{{ $labels.ApplicationRole }} 应用负责人：{{ $labels.ApplicationOwner }} 磁盘使用率超过90%,并可用容量低于50GB"
         value: "{{ $value }}"
+
+    - alert: 五分钟内CPU平均利用率超过80%
+      expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
+      for: 3m
+      labels:
+        kind: Infra
+        priority: P3 #P1 P2 P3 P4 P5
+        severity: Moderate  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: LinuxCPU告警  #填写告警类型
+        level: 'warning' #等级分类为firing或warning
+      annotations:
+        summary: "服务器{{ $labels.Hostname }}CPU使用率告警,当前值为{{ $value }}"
+        description: "服务器{{ $labels.Hostname }}CPU使用率告警,服务器IP: {{ $labels.instance }} 所属应用：{{ $labels.ApplicationRole }} 应用负责人：{{ $labels.ApplicationOwner }} "
+        value: "{{ $value }}%"
+
+    - alert: 内存利用率大于80%
+      expr: (1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100 > 80
+      for: 1m
+      labels:
+        kind: Infra
+        priority: P5 #P1 P2 P3 P4 P5
+        severity: Informational  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: Linux内存告警  #填写告警类型
+        level: 'warning' #等级分类为firing或warning
+      annotations:
+        summary: "服务器{{ $labels.Hostname }}内存使用率告警,当前值为{{ $value }}"
+        description: "服务器{{ $labels.Hostname }}内存使用率告警,服务器IP: {{ $labels.instance }} 所属应用：{{ $labels.ApplicationRole }} 应用负责人：{{ $labels.ApplicationOwner }}"
+        value: "{{ $value }}%"
 
 
 - name: Windows服务器系统报警规则
   rules:
-    - alert: 五分钟内CPU平均利用率超过90%
-      expr: 100 - (avg by (instance) (rate(windows_cpu_time_total{mode="idle"}[5m])) * 100) >= 90
+    - alert: 磁盘利用率超过90%且剩余空间低于50GB
+      expr: (1-windows_logical_disk_free_bytes/windows_logical_disk_size_bytes)*100  > 90 and   (windows_logical_disk_free_bytes / (50 * 1024 * 1024 * 1024)) < 1
+      for: 1m
+      labels:
+        kind: Infra
+        priority: P1 #P1 P2 P3 P4 P5
+        severity: Critical  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: Windows磁盘告警  #填写告警类型
+        level: 'firing' #等级分类为firing或warning
+      annotations:
+        summary: "Windows服务器{{ $labels.Hostname }}磁盘使用率告警,当前值为{{ $value }}"
+        description: "服务器{{ $labels.Hostname }}磁盘使用率告警,告警磁盘为{{ $labels.volume }}盘.服务器IP: {{ $labels.instance }} 所属应用：{{ $labels.ApplicationRole }} 应用负责人：{{ $labels.ApplicationOwner }} ,磁盘使用率超过90%,并可用容量低于50GB"
+        value: "{{ $value }}%"
+
+    - alert: 五分钟内CPU平均利用率超过80%
+      expr: 100 - (avg by (instance) (rate(windows_cpu_time_total{mode="idle"}[5m])) * 100) >= 80
       for: 3m
       labels:
-        kind: Infra #kind 分类为Infra Application
-        priority: P2 #P1 P2 P3 P4 P5
-        severity: High #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        kind: Infra
+        priority: P3 #P1 P2 P3 P4 P5
+        severity: Moderate  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
         type: WindowsCPU告警  #填写告警类型
-        level: 'firing' #等级分类为firing或warning
+        level: 'warning' #等级分类为firing或warning
       annotations:
         summary: "服务器{{ $labels.hostname }}CPU使用率告警,当前值为{{ $value }}"
         description: "\n  服务器{{ $labels.hostname }}CPU使用率告警.服务器IP: {{ $labels.instance }} 所属应用：{{ $labels.ApplicationRole }} 应用负责人：{{ $labels.ApplicationOwner }}"
         value: "{{ $value }}%"
 
 
-    - alert: 内存利用率大于90%
-      expr: 100 - ((windows_os_physical_memory_free_bytes / windows_cs_physical_memory_bytes) * 100) >= 90
+    - alert: 内存利用率大于80%
+      expr: 100 - ((windows_os_physical_memory_free_bytes / windows_cs_physical_memory_bytes) * 100) >= 80
       for: 1m
       labels:
-        kind: Infra #kind 分类为Infra Application
-        priority: P2 #P1 P2 P3 P4 P5
-        severity: High  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        kind: Infra
+        priority: P5 #P1 P2 P3 P4 P5
+        severity: Informational  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
         type: Windows内存告警  #填写告警类型
-        level: 'firing' #等级分类为firing或warning
+        level: 'warning' #等级分类为firing或warning
       annotations:
         summary: "服务器{{ $labels.Hostname }}内存使用率告警,当前值为{{ $value }}"
         description: "\n  服务器{{ $labels.Hostname }}内存使用率告警,服务器IP: {{ $labels.instance }} 所属应用：{{ $labels.ApplicationRole }} 应用负责人：{{ $labels.ApplicationOwner }}"
         value: "{{ $value }}%"
+
+
+
+- name: Oracle数据库告警规则
+  rules:
+    - alert: Oracle表空间(除临时表空间)利用率超过95%
+      expr: oracledb_realcan_tablespace_all_shiyonglv{tablespacename!~".*TEMP"} > 95
+      for: 1m
+      labels:
+        kind: Applicaiton
+        priority: P1 #P1 P2 P3 P4 P5
+        severity: Critical  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: Oracle表空间告警  #填写告警类型
+        level: 'firing' #等级分类为firing或warning
+      annotations:
+        summary: "Oracle数据库{{ $labels.dbname }}表空间告警"
+        description: "\n  数据库:{{ $labels.dbname }} \n  表空间:{{ $labels.tablespacename }} \n  已分配空间：{{ $labels.yifenpei }}G \n  最大空间：{{ $labels.zuidakongjian }}G \n  服务器IP：{{ $labels.ipaddr }} \n  告警原因：表空间{{ $labels.tablespacename }}使用率超过95%！"
+        value: "{{ $value }}%"
+
+- name: 证书有效期告警规则
+  rules:
+    - alert: 证书有效期小于60天
+      expr: (probe_ssl_earliest_cert_expiry{job="cert"} - time())/60/60/24 < 60
+      for: 1m
+      labels:
+        kind: Application
+        priority: P2 #P1 P2 P3 P4 P5
+        severity: High  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: 证书有效期告警  #填写告警类型
+        level: 'warning' #等级分类为firing或warning
+      annotations:
+        summary: "证书有效期剩余时间小于六十天"
+        description: "网站{{ $labels.instance }}证书有效期剩余时间小于六十天,请注意及时更换新证书"
+        value: "{{ $value }}%"
+
+
+- name: BPM应用服务告警
+  rules:
+    - alert: iPortal网站主体信息错误告警
+      expr: probe_success{job="bpm_blackbox-https"} == 0
+      for: 1m
+      labels:
+        kind: Application
+        priority: P1 #P1 P2 P3 P4 P5
+        severity: Critical  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: BPM网站监控  #填写告警类型
+        level: 'firing' #等级分类为firing或warning
+      annotations:
+        summary: "BPM监控网站主题信息错误(正常页面信息为SUCCESS)"
+        description: "网站{{ $labels.instance }}主体信息错误,正常页面显示信息应为SUCCESS,请联系应用负责人{{ $labels.ApplicationOwner }}"
+        value: "{{ $value }}%"
+
+
+- name: Prometheus节点告警
+  rules:
+    - alert: 监控节点连接失败告警
+      expr: up == 0
+      for: 1m
+      labels:
+        kind: Infra
+        priority: P5 #P1 P2 P3 P4 P5
+        severity: Informational  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: Prometheus监控agent异常  #填写告警类型
+        level: 'warning' #等级分类为firing或warning
+      annotations:
+        summary: "服务器{{ $labels.hostname }}监控状态异常"
+        description: " \n  Prometheus无法获取实例{{ $labels.instance }} 的监控信息! \n  请及时查看节点故障原因。\n  帮助： http://prometheus.realcan.cn:9090/targets可以查看节点连接错误信息"
+        value: "UP = {{ $value }}"

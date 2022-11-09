@@ -1,0 +1,145 @@
+groups:
+- name: "Linux Low Alerts"
+  rules:
+    - alert: ""
+      expr: irate(node_intr_total[5m]) > 20000
+      for: 1m
+      labels:
+        kind: Infra #kind 分类为Infra Application Security
+        priority: P4 #P1 P2 P3 P4 P5
+        severity: Low  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: CPU  #填写告警类型
+        level: 'Warning' #等级分类为Firing或Warning
+      annotations:
+        Summary: ""
+        Description: ""
+
+    - alert: ""
+      expr: irate(node_intr_total[5m]) > 20000
+      for: 1m
+      labels:
+        kind: Infra #kind 分类为Infra Application Security
+        priority: P4 #P1 P2 P3 P4 P5
+        severity: Low  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: CPU  #填写告警类型
+        level: 'Warning' #等级分类为Firing或Warning
+      annotations:
+        Summary: ""
+        Description: ""
+
+    - alert: ""
+      expr: irate(node_intr_total[5m]) > 20000
+      for: 1m
+      labels:
+        kind: Infra #kind 分类为Infra Application Security
+        priority: P4 #P1 P2 P3 P4 P5
+        severity: Low  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: CPU  #填写告警类型
+        level: 'Warning' #等级分类为Firing或Warning
+      annotations:
+        Summary: ""
+        Description: ""
+
+    - alert: ""
+      expr: irate(node_intr_total[5m]) > 20000
+      for: 1m
+      labels:
+        kind: Infra #kind 分类为Infra Application Security
+        priority: P4 #P1 P2 P3 P4 P5
+        severity: Low  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: CPU  #填写告警类型
+        level: 'Warning' #等级分类为Firing或Warning
+      annotations:
+        Summary: ""
+        Description: ""
+
+    - alert: ""
+      expr: irate(node_intr_total[5m]) > 20000
+      for: 1m
+      labels:
+        kind: Infra #kind 分类为Infra Application Security
+        priority: P4 #P1 P2 P3 P4 P5
+        severity: Low  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: CPU  #填写告警类型
+        level: 'Warning' #等级分类为Firing或Warning
+      annotations:
+        Summary: ""
+        Description: ""
+
+    - alert: ""
+      expr: irate(node_intr_total[5m]) > 20000
+      for: 1m
+      labels:
+        kind: Infra #kind 分类为Infra Application Security
+        priority: P4 #P1 P2 P3 P4 P5
+        severity: Low  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: CPU  #填写告警类型
+        level: 'Warning' #等级分类为Firing或Warning
+      annotations:
+        Summary: ""
+        Description: ""
+
+    - alert: ""
+      expr: irate(node_intr_total[5m]) > 20000
+      for: 1m
+      labels:
+        kind: Infra #kind 分类为Infra Application Security
+        priority: P4 #P1 P2 P3 P4 P5
+        severity: Low  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: CPU  #填写告警类型
+        level: 'Warning' #等级分类为Firing或Warning
+      annotations:
+        Summary: ""
+        Description: ""
+
+    - alert: ""
+      expr: irate(node_intr_total[5m]) > 20000
+      for: 1m
+      labels:
+        kind: Infra #kind 分类为Infra Application Security
+        priority: P4 #P1 P2 P3 P4 P5
+        severity: Low  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: CPU  #填写告警类型
+        level: 'Warning' #等级分类为Firing或Warning
+      annotations:
+        Summary: ""
+        Description: ""
+
+    - alert: ""
+      expr: irate(node_intr_total[5m]) > 20000
+      for: 1m
+      labels:
+        kind: Infra #kind 分类为Infra Application Security
+        priority: P4 #P1 P2 P3 P4 P5
+        severity: Low  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: CPU  #填写告警类型
+        level: 'Warning' #等级分类为Firing或Warning
+      annotations:
+        Summary: ""
+        Description: ""
+
+    - alert: ""
+      expr: irate(node_intr_total[5m]) > 20000
+      for: 1m
+      labels:
+        kind: Infra #kind 分类为Infra Application Security
+        priority: P4 #P1 P2 P3 P4 P5
+        severity: Low  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: CPU  #填写告警类型
+        level: 'Warning' #等级分类为Firing或Warning
+      annotations:
+        Summary: ""
+        Description: ""
+
+    - alert: ""
+      expr: irate(node_intr_total[5m]) > 20000
+      for: 1m
+      labels:
+        kind: Infra #kind 分类为Infra Application Security
+        priority: P4 #P1 P2 P3 P4 P5
+        severity: Low  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
+        type: CPU  #填写告警类型
+        level: 'Warning' #等级分类为Firing或Warning
+      annotations:
+        Summary: ""
+        Description: ""

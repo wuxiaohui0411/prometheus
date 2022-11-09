@@ -8,3 +8,5 @@ ALTER USER dbsnmp ACCOUNT UNLOCK;
 
 CONN dbsnmp/Realcan_1357;
 
+1. 用户dbsnmp解锁并修改密码Realcan_1357
+2. 查看数据库实例名
