@@ -1,91 +1,8 @@
 groups:
-- name: "Linux  AWS prod Critical Alerts"
-  rules:
-    - alert: "Disk is almost full (< 10 % left)"
-      expr: (1 - node_filesystem_avail_bytes{Environment="prod-rk"}/node_filesystem_size_bytes{Environment="prod-rk"}) * 100 >= 90 and (node_filesystem_avail_bytes{Environment="prod-rk"} <= ( 50 * 1024 * 1024 *1024 ))
-      for: 1m
-      labels:
-        kind: Infra #kind 分类为Infra Application Security
-        priority: P1 #P1 P2 P3 P4 P5
-        severity: Critical  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
-        type: Disk  #填写告警类型
-        level: 'Firing' #等级分类为Firing或Warning
-      annotations:
-        Summary: "Host  {{ $labels.Hostname }}  out of disk space "
-        Description: "Host {{ $labels.Hostname }} disk is almost full (< 10% left)\n  Instance = {{ $labels.instance }}\n  Value = {{ $value }}\n  Device = {{ $labels.device }}\n  Fstype = {{ $labels.fstype }}\n  Mountpoint = {{ $labels.mountpoint}} "
-
-    - alert: "CPU load is > 90%"
-      expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle",Environment="prod-rk"}[5m])) * 100) >= 90
-      for: 5m
-      labels:
-        kind: Infra #kind 分类为Infra Application Security
-        priority: P1 #P1 P2 P3 P4 P5
-        severity: Critical  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
-        type: CPU  #填写告警类型
-        level: 'Firing' #等级分类为Firing或Warning
-      annotations:
-        Summary: "Host  {{ $labels.Hostname }}  CPU load is {{ $value }} "
-        Description: "Host {{ $labels.Hostname }} CPU load is > 90%\n  Instance = {{ $labels.instance }}\n  Value = {{ $value }}\n "
-
-    - alert: "Memory is filling up (< 5% left)"
-      expr: (1 - node_memory_MemAvailable_bytes{ApplicationName!~"SAP.*",Environment="prod-rk"} / node_memory_MemTotal_bytes{ApplicationName!~"SAP.*",Environment="prod-rk"}) * 100 >= 95
-      for: 5m
-      labels:
-        kind: Infra #kind 分类为Infra Application Security
-        priority: P1 #P1 P2 P3 P4 P5
-        severity: Critical  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
-        type: Memory  #填写告警类型
-        level: 'Firing' #等级分类为Firing或Warning
-      annotations:
-        Summary: "Host  {{ $labels.Hostname }}  memory is filling up (< 5% left) "
-        Description: "Host {{ $labels.Hostname }} memory is filling up (< 5% left)\n  Instance = {{ $labels.instance }}\n  Value = {{ $value }}\n "
-
-- name: "Windows AWS prod Critical Alerts"
-  rules:
-    - alert: "Disk usage is more than 90%"
-      expr: (1-windows_logical_disk_free_bytes{Environment="prod-rk"}/windows_logical_disk_size_bytes{Environment="prod-rk"})*100  > 90 and (windows_logical_disk_free_bytes{Environment="prod-rk"} / (50 * 1024 * 1024 * 1024)) < 1
-      for: 1m
-      labels:
-        kind: Infra #kind 分类为Infra Application Security
-        priority: P1 #P1 P2 P3 P4 P5
-        severity: Critical  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
-        type: Disk  #填写告警类型
-        level: 'Firing' #等级分类为Firing或Warning
-      annotations:
-        Summary: "Windows Server {{ $labels.Hostname }} Disk usage is more than 90% "
-        Description: "Windows Server {{ $labels.Hostname }} Disk usage is more than 90%\n  Instance = {{ $labels.instance }}\n  Value = {{ $value }}\n  Volume = {{ $labels.volume }} "
-
-    - alert: "Memory usage is more than 90%"
-      expr: 100 - ((windows_os_physical_memory_free_bytes{Environment="prod-rk"} / windows_cs_physical_memory_bytes{Environment="prod-rk"}) * 100) >= 90
-      for: 5m
-      labels:
-        kind: Infra #kind 分类为Infra Application Security
-        priority: P1 #P1 P2 P3 P4 P5
-        severity: Critical  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
-        type: Memory  #填写告警类型
-        level: 'Firing' #等级分类为Firing或Warning
-      annotations:
-        Summary: "Windows Server {{ $labels.Hostname }} Memory usage is more than 90% "
-        Description: "Windows Server {{ $labels.Hostname }} Memory usage is more than 90%\n  Instance = {{ $labels.instance }}\n  Value = {{ $value }} "
-
-    - alert: "CPU Usage is more than 90%"
-      expr: 100 - (avg by (instance) (rate(windows_cpu_time_total{mode="idle",Environment="prod-rk"}[5m])) * 100) >= 90
-      for: 5m
-      labels:
-        kind: Infra #kind 分类为Infra Application Security
-        priority: P1 #P1 P2 P3 P4 P5
-        severity: Critical  #severity分为Critical High Moderate Low Informational,与priority相对应,分为P1 P2 P3 P4 P5
-        type: CPU  #填写告警类型
-        level: 'Firing' #等级分类为Firing或Warning
-      annotations:
-        Summary: "Windows Server {{ $labels.Hostname }} CPU Usage is more than 95% "
-        Description: "Windows Server {{ $labels.Hostname }} CPU Usage is more than 95%\n  Instance = {{ $labels.instance }}\n  Value = {{ $value }} "
-
-
-- name: "Linux  AWS nonprod-rk Critical Alerts"
+- name: "Linux Critical Alerts"
   rules:
     - alert: "Disk is almost full (< 5 % left)"
-      expr: (1 - node_filesystem_avail_bytes{Environment="nonprod-rk"}/node_filesystem_size_bytes{Environment="nonprod-rk"}) * 100 >= 95 and (node_filesystem_avail_bytes{Environment="nonprod-rk"} <= ( 50 * 1024 * 1024 *1024 ))
+      expr: (1 - node_filesystem_avail_bytes/node_filesystem_size_bytes) * 100 >= 95 and (node_filesystem_avail_bytes <= ( 50 * 1024 * 1024 *1024 ))
       for: 1m
       labels:
         kind: Infra #kind 分类为Infra Application Security
@@ -98,7 +15,7 @@ groups:
         Description: "Host {{ $labels.Hostname }} disk is almost full (< 5% left)\n  Instance = {{ $labels.instance }}\n  Value = {{ $value }}\n  Device = {{ $labels.device }}\n  Fstype = {{ $labels.fstype }}\n  Mountpoint = {{ $labels.mountpoint}} "
 
     - alert: "CPU load is > 95%"
-      expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle",Environment="nonprod-rk"}[5m])) * 100) >= 95
+      expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) >= 95
       for: 5m
       labels:
         kind: Infra #kind 分类为Infra Application Security
@@ -108,10 +25,10 @@ groups:
         level: 'Firing' #等级分类为Firing或Warning
       annotations:
         Summary: "Host  {{ $labels.Hostname }}  CPU load is {{ $value }} "
-        Description: "Host {{ $labels.Hostname }} CPU load is > 90%\n  Instance = {{ $labels.instance }}\n  Value = {{ $value }}\n "
+        Description: "Host {{ $labels.Hostname }} CPU load is > 95%\n  Instance = {{ $labels.instance }}\n  Value = {{ $value }}\n "
 
     - alert: "Memory is filling up (< 5% left)"
-      expr: (1 - node_memory_MemAvailable_bytes{ApplicationName!~"SAP.*",Environment="nonprod-rk"} / node_memory_MemTotal_bytes{ApplicationName!~"SAP.*",Environment="nonprod-rk"}) * 100 >= 95
+      expr: (1 - node_memory_MemAvailable_bytes{ApplicationName!~"SAP.*"} / node_memory_MemTotal_bytes{ApplicationName!~"SAP.*"}) * 100 >= 95
       for: 5m
       labels:
         kind: Infra #kind 分类为Infra Application Security
@@ -123,10 +40,10 @@ groups:
         Summary: "Host  {{ $labels.Hostname }}  memory is filling up (< 5% left) "
         Description: "Host {{ $labels.Hostname }} memory is filling up (< 5% left)\n  Instance = {{ $labels.instance }}\n  Value = {{ $value }}\n "
 
-- name: "Windows AWS prod Critical Alerts"
+- name: "Windows Critical Alerts"
   rules:
     - alert: "Disk usage is more than 95%"
-      expr: (1-windows_logical_disk_free_bytes{Environment="nonprod-rk"}/windows_logical_disk_size_bytes{Environment="nonprod-rk"})*100  > 95 and (windows_logical_disk_free_bytes{Environment="nonprod-rk"} / (50 * 1024 * 1024 * 1024)) < 1
+      expr: (1-windows_logical_disk_free_bytes/windows_logical_disk_size_bytes)*100  > 95 and (windows_logical_disk_free_bytes / (50 * 1024 * 1024 * 1024)) < 1
       for: 1m
       labels:
         kind: Infra #kind 分类为Infra Application Security
@@ -139,7 +56,7 @@ groups:
         Description: "Windows Server {{ $labels.Hostname }} Disk usage is more than 90%\n  Instance = {{ $labels.instance }}\n  Value = {{ $value }}\n  Volume = {{ $labels.volume }} "
 
     - alert: "Memory usage is more than 95%"
-      expr: 100 - ((windows_os_physical_memory_free_bytes{Environment="nonprod-rk"} / windows_cs_physical_memory_bytes{Environment="nonprod-rk"}) * 100) >= 95
+      expr: 100 - ((windows_os_physical_memory_free_bytes / windows_cs_physical_memory_bytes) * 100) >= 95
       for: 5m
       labels:
         kind: Infra #kind 分类为Infra Application Security
@@ -152,7 +69,7 @@ groups:
         Description: "Windows Server {{ $labels.Hostname }} Memory usage is more than 90%\n  Instance = {{ $labels.instance }}\n  Value = {{ $value }} "
 
     - alert: "CPU Usage is more than 95%"
-      expr: 100 - (avg by (instance) (rate(windows_cpu_time_total{mode="idle",Environment="nonprod-rk"}[5m])) * 100) >= 95
+      expr: 100 - (avg by (instance) (rate(windows_cpu_time_total{mode="idle"}[5m])) * 100) >= 95
       for: 5m
       labels:
         kind: Infra #kind 分类为Infra Application Security
@@ -163,8 +80,6 @@ groups:
       annotations:
         Summary: "Windows Server {{ $labels.Hostname }} CPU Usage is more than 95% "
         Description: "Windows Server {{ $labels.Hostname }} CPU Usage is more than 95%\n  Instance = {{ $labels.instance }}\n  Value = {{ $value }} "
-
-
 
 - name: "Oralce Critical Alerts"
   rules:
@@ -238,4 +153,3 @@ groups:
       annotations:
         Summary: "iPortal Website body information error"
         description: "Website {{ $labels.instance }} iPortal Website body information error"
-

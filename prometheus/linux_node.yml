@@ -10,7 +10,7 @@
 
 
 ###############################################
-######         OMS 应用生产服务器         #######
+######        OMS 应用生产服务器四台       #######
 ###############################################
 - targets: ['10.32.132.11:9100']
   labels:
@@ -1846,6 +1846,22 @@
     ApplicationRole: ''
     Environment: 'unknown'
     Hostname: 'HWDP-xecmoracle1-101'
+    ApplicationOwner: 'unknown'
+
+
+- targets: ['10.31.0.132:9100']
+  labels:
+    ApplicationName: 'unknown'
+    ApplicationRole: ''
+    Environment: 'unknown'
+    Hostname: 'HWDT-OTPrint-132'
+    ApplicationOwner: 'unknown'
+- targets: ['10.31.0.163:9100']
+  labels:
+    ApplicationName: 'unknown'
+    ApplicationRole: ''
+    Environment: 'unknown'
+    Hostname: 'HWDP-OTPrint-163'
     ApplicationOwner: 'unknown'
 
 - targets: ['10.31.0.102:9100']
